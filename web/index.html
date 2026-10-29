@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>한남랭 IDE</title>
+  <meta name="description" content="밈 말투로 코딩하는 난해한 프로그래밍 언어 한남랭의 브라우저 IDE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%A3%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>한남랭 <small>IDE</small></h1>
+    <div class="actions">
+      <select id="examples" aria-label="예제 불러오기"></select>
+      <button id="run" class="primary" title="Ctrl+Enter">▶ 실행</button>
+      <button id="step" title="F10">⏭ 한 단계</button>
+      <button id="play">⏯ 천천히</button>
+      <button id="reset">⏹ 처음으로</button>
+      <label class="speed">속도 <input id="speed" type="range" min="1" max="10" value="6"></label>
+      <button id="share">🔗 공유</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="left">
+      <div class="editor">
+        <div class="gutter" id="gutter" aria-hidden="true"></div>
+        <div class="code-area">
+          <div class="hl" id="hl"></div>
+          <textarea id="code" spellcheck="false" wrap="off" autocomplete="off" autocapitalize="off" aria-label="코드 편집기"></textarea>
+        </div>
+      </div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div class="palette" id="palette" aria-label="빠른 입력"></div>
+    </section>
+
+    <aside class="right">
+      <section class="card">
+        <h2>입력 <small>이지랄ㅋㅋ가 읽어가요 (공백으로 구분)</small></h2>
+        <textarea id="stdin" rows="2" spellcheck="false" aria-label="표준 입력"></textarea>
+      </section>
+      <section class="card">
+        <h2>출력</h2>
+        <pre id="out" aria-live="polite"></pre>
+      </section>
+      <section class="card">
+        <h2>스택 <small id="meta"></small></h2>
+        <div id="stack" class="stack"></div>
+      </section>
+      <details class="card" open>
+        <summary>숫자 · 문자열 변환</summary>
+        <label class="field">정수 ↔ 리터럴
+          <input id="numIn" placeholder="14 또는 티~원 티~~~~원" autocomplete="off">
+        </label>
+        <output id="numOut" class="conv"></output>
+        <div class="row">
+          <button id="numInsert" type="button">줄로 삽입</button>
+        </div>
+        <label class="field">문자열 → 출력 코드
+          <input id="sayIn" placeholder="Hello" autocomplete="off">
+        </label>
+        <div class="row">
+          <button id="sayInsert" type="button">코드로 삽입</button>
+        </div>
+      </details>
+      <details class="card">
+        <summary>치트시트</summary>
+        <div id="cheat"></div>
+      </details>
+    </aside>
+  </main>
+
+  <footer>
+    한 줄이 한 번의 발화, <code>예?</code>에는 반드시 대답이 있어야 해요 · Ctrl+Enter 실행 · F10 한 단계
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
