@@ -53,7 +53,7 @@ def encode(n):
 
 def parse(source):
     lines = [ln.strip() for ln in source.splitlines()]
-    lines = [ln for ln in lines if ln and not ln.startswith("아(")]
+    lines = [ln for ln in lines if ln]
     if len(lines) < 2 or lines[0] != "요이" or lines[-1] != "넌 나가라":
         raise HnlError("'요이'로 시작해서 '넌 나가라'로 끝내야 해요")
     body = []

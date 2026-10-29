@@ -52,22 +52,21 @@ test('에러', () => {
 });
 
 test('한 단계씩 실행하면 원본 줄과 스택을 알려준다', () => {
-  const src = '요이\n아(주석)\n\n티~~원\n아\n넌 나가라';
+  const src = '요이\n\n티~~원\n아\n넌 나가라';
   const m = new Machine(src);
-  assert.equal(m.currentSrcLine, 3);
+  assert.equal(m.currentSrcLine, 2);
   m.step();
   assert.deepEqual(m.stack, [2n]);
-  assert.equal(m.currentSrcLine, 4);
+  assert.equal(m.currentSrcLine, 3);
   m.step();
   assert.deepEqual(m.stack, [2n, 2n]);
   assert.ok(m.done);
 });
 
-test('거터 줄 번호는 주석과 빈 줄을 건너뛴다', () => {
-  const info = lineNumbers('요이\n아(주석)\n\n티~원\n줴줴이야\n넌 나가라');
+test('거터 줄 번호는 빈 줄을 건너뛴다', () => {
+  const info = lineNumbers('요이\n\n티~원\n줴줴이야\n넌 나가라');
   assert.deepEqual(info, [
     { kind: 'start' },
-    null,
     null,
     { kind: 'n', n: 1 },
     { kind: 'n', n: 2 },

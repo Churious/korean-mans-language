@@ -30,7 +30,6 @@ const DEFAULT_PROGRAM = `요이
 const COMMANDS = [
   ['요이', '시작'], ['넌 나가라', '끝'], ['예?', '질문 (0이 아니면 다음 줄 실행)'],
   ['줴줴이야', '숫자 출력'], ['줴줴이야!', '문자 출력'], ['이지랄ㅋㅋ', '입력'],
-  ['아(혼잣말)', '주석'],
 ];
 
 const code = $('code');
@@ -258,7 +257,6 @@ function buildCheatsheet() {
     ['예?', 'pop 해서 0이 아니면 다음 줄 실행, 아니면 건너뜀'],
     ['아뇨아뇨아뇨 N', 'N번째 줄로 점프'],
     ['넌 나가라', '종료'],
-    ['아( … )', '주석 (줄 번호에 안 셈)'],
   ];
   const table = (head, rows) => `<table><tr><th>${head[0]}</th><th>${head[1]}</th></tr>${rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table>`;
   $('cheat').innerHTML = table(['발화', '동작'], cmdRows)

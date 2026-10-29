@@ -72,7 +72,7 @@ function codeLines(source) {
   const out = [];
   source.split(/\r?\n/).forEach((raw, src) => {
     const text = raw.trim();
-    if (text && !text.startsWith('아(')) out.push({ text, src });
+    if (text) out.push({ text, src });
   });
   return out;
 }
@@ -88,7 +88,7 @@ export function lineNumbers(source) {
   let first = code.length ? code[0].src : -1;
   lines.forEach((raw, i) => {
     const text = raw.trim();
-    if (!text || text.startsWith('아(')) return infos.push(null);
+    if (!text) return infos.push(null);
     if (i === first) return infos.push({ kind: 'start' });
     if (i === last && code.length > 1 && text === '넌 나가라') return infos.push({ kind: 'end' });
     n += 1;
