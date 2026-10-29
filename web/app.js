@@ -14,7 +14,6 @@ const EXAMPLES = [
 ];
 
 const DEFAULT_PROGRAM = `요이
-아(3부터 1까지 한 줄씩 출력)
 티~~~원
 아
 줴줴이야
