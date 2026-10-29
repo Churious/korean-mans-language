@@ -275,7 +275,7 @@ function updateConverter() {
 
 async function fetchExample(file) {
   try {
-    const res = await fetch(`examples/${file}`);
+    const res = await fetch(`examples/${file}`, { cache: 'no-cache' });
     return res.ok ? await res.text() : null;
   } catch {
     return null;
@@ -311,16 +311,20 @@ async function share() {
   }
 }
 
+// 주석 문법을 없애기 전에 저장되거나 공유된 코드의 `아(…)` 줄은 떼고 연다.
+const dropOldComments = (text) => text.split('\n').filter((ln) => !ln.trim().startsWith('아(')).join('\n');
+
 function loadInitial() {
   try {
     const params = new URLSearchParams(location.hash.slice(1));
     if (params.has('c')) {
-      code.value = fromB64(params.get('c'));
+      code.value = dropOldComments(fromB64(params.get('c')));
       stdin.value = params.has('i') ? fromB64(params.get('i')) : '';
       return;
     }
   } catch { /* 깨진 링크면 저장된 코드로 */ }
-  code.value = store.get('hnl.code') ?? DEFAULT_PROGRAM;
+  const saved = store.get('hnl.code');
+  code.value = saved === null ? DEFAULT_PROGRAM : dropOldComments(saved);
   stdin.value = store.get('hnl.stdin') ?? '';
 }
 
