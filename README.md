@@ -24,7 +24,7 @@
 
 ## IDE
 
-GitHub Pages로 배포됩니다: `https://<사용자>.github.io/<레포>/`
+GitHub Pages로 배포됩니다: **https://churious.github.io/korean-mans-language/**
 
 기능은 다음과 같아요. 실행 / 한 단계 / 천천히 실행, 현재 줄 하이라이트와 스택 시각화, 실행 줄 번호 거터(주석과 빈 줄은 건너뜀), 예제 불러오기, 숫자·문자열 변환기, 빠른 입력 팔레트, 공유 링크(코드가 URL에 담겨요).
 
