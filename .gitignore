@@ -1,5 +1,4 @@
 dist/
-__pycache__/
-*.egg-info/
+target/
 node_modules/
 .claude/

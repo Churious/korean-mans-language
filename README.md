@@ -29,7 +29,7 @@ GitHub Pages로 배포됩니다: **https://churious.github.io/korean-mans-langua
 
 로컬에서 보려면:
 ```bash
-py scripts/build_site.py
+npm run build:site
 py -m http.server 8000 -d dist
 ```
 `http://localhost:8000`을 열어주세요. (`file://`로 열면 모듈이 막혀요.)
@@ -40,33 +40,42 @@ py -m http.server 8000 -d dist
 2. 레포 **Settings → Pages → Source**를 **GitHub Actions**로 바꿉니다.
 3. [pages.yml](.github/workflows/pages.yml)이 테스트를 돌리고 `dist/`를 배포합니다.
 
-## CLI
+## CLI (Rust)
+
+[Rust](https://rustup.rs) stable이 필요해요.
 
 ```bash
-py -m hnl run examples/countdown.hnl
-echo 5 | py -m hnl run examples/factorial.hnl
-py -m hnl num -14          # 지~랄 티~~~~원
-py -m hnl say "안녕"        # 문자열을 출력하는 프로그램 생성
+cargo run --release -- run examples/countdown.hnl
+echo 5 | cargo run --release -- run examples/factorial.hnl
+cargo run --release -- num -14      # 지~랄 티~~~~원
+cargo run --release -- say "안녕"    # 문자열을 출력하는 프로그램 생성
 ```
 
-`pip install -e .` 하면 `hnl` 명령으로도 쓸 수 있습니다.
+설치하면 `hnl` 명령으로 쓸 수 있습니다.
+
+```bash
+cargo install --path .
+hnl run examples/hello.hnl
+```
+
+라이브러리로도 쓸 수 있어요: `hnl::run(source, input)`, `hnl::compile`, `hnl::Machine`(한 단계 실행).
 
 ## 구조
 
 ```
-hnl/            파이썬 인터프리터와 CLI
-web/            IDE (정적 사이트, 의존성 없음)
+src/            Rust 인터프리터(lib.rs)와 CLI(main.rs)
+web/            IDE (정적 사이트, 의존성 없음, JS 인터프리터 포함)
 examples/       예제 .hnl (CLI와 IDE가 같이 씀)
 docs/SPEC.md    언어 명세
 docs/words.md   쓸 만한 밈 단어 조사
 scripts/        사이트 빌드
-tests/          파이썬 테스트 + tests/js (JS 코어 테스트)
+tests/          Rust 테스트(hnl.rs) + JS 테스트(js/)
 ```
 
 ## 테스트
 
 ```bash
-py -m unittest discover -s tests -v
+cargo test
 npm test
 ```
 
@@ -74,3 +83,5 @@ npm test
 
 - [언어 명세](docs/SPEC.md)
 - [단어 조사](docs/words.md)
+- [기여 가이드](CONTRIBUTING.md)
+- [라이선스](LICENSE) (MIT)

@@ -78,7 +78,7 @@
 
 | 위치 | 설명 |
 |---|---|
-| [hnl/core.py](../hnl/core.py) | 파이썬 인터프리터 (CLI) |
-| [web/hnl.js](../web/hnl.js) | JS 인터프리터 (IDE용, 한 단계 실행 지원) |
+| [src/lib.rs](../src/lib.rs) | Rust 인터프리터 (기준 구현, CLI는 `src/main.rs`) |
+| [web/hnl.js](../web/hnl.js) | JS 인터프리터 (IDE용, 브라우저에서 한 단계 실행) |
 
-두 구현은 같은 예제와 같은 기대 출력으로 각각 테스트합니다.
+두 구현은 같은 예제와 같은 기대 출력으로 각각 테스트합니다. 의미가 다르면 Rust 구현이 맞는 쪽이에요.

@@ -1,8 +1,9 @@
 {
-  "name": "hnl",
+  "name": "hnl-ide",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test \"tests/js/*.test.js\""
+    "test": "node --test \"tests/js/*.test.js\"",
+    "build:site": "node scripts/build-site.js"
   }
 }

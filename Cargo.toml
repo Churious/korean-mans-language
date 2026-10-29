@@ -1,0 +1,19 @@
+[package]
+name = "hnl"
+version = "0.1.0"
+edition = "2021"
+description = "한남랭(한국남자프로그래밍언어): 밈 말투로 짜는 대화형 난해한 프로그래밍 언어"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+
+[lib]
+name = "hnl"
+path = "src/lib.rs"
+
+[[bin]]
+name = "hnl"
+path = "src/main.rs"
